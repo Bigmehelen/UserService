@@ -56,4 +56,20 @@ const updateProfile = async (req, res) => {
   }
 };
 
-module.exports = { register, login, getProfile, updateProfile };
+const upgradeToArtisan = async (req, res) => {
+  try {
+    const response = await authService.upgradeToArtisan(req.user.userId, req.body);
+    res.status(200).json(response);
+  } catch (error) {
+    console.error(error);
+    if (error.message === 'User not found') {
+      return res.status(404).json({ message: error.message });
+    }
+    if (error.message === 'User is already an artisan') {
+      return res.status(400).json({ message: error.message });
+    }
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+module.exports = { register, login, getProfile, updateProfile, upgradeToArtisan };

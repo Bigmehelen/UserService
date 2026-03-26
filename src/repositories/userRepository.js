@@ -88,10 +88,24 @@ const update = async (id, updateData) => {
   });
 };
 
+const upgradeToArtisan = async (id, artisanData) => {
+  return await prisma.user.update({
+    where: { id },
+    data: {
+      role: 'ARTISAN',
+      artisan: {
+        create: artisanData,
+      },
+    },
+    include: { client: true, artisan: true },
+  });
+};
+
 module.exports = {
   findByEmail,
   findByUsername,
   findById,
   create,
   update,
+  upgradeToArtisan,
 };
