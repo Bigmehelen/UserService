@@ -75,10 +75,4 @@ const upgradeToArtisan = async (userId, artisanData) => {
   return userMapper.toAuthResponse(updatedUser, token);
 };
 
-module.exports = {
-  register,
-  login,
-  getProfile,
-  updateProfile,
-  upgradeToArtisan,
-};
+module.exports = { register, login, getProfile, updateProfile, upgradeToArtisan };
