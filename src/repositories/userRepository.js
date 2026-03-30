@@ -1,5 +1,4 @@
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const prisma = require('../utils/prisma');
 
 const findByEmail = async (email) => {
   return await prisma.user.findUnique({
@@ -101,11 +100,4 @@ const upgradeToArtisan = async (id, artisanData) => {
   });
 };
 
-module.exports = {
-  findByEmail,
-  findByUsername,
-  findById,
-  create,
-  update,
-  upgradeToArtisan,
-};
+module.exports = { findByEmail, findByUsername, findById, create, update, upgradeToArtisan };

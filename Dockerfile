@@ -1,5 +1,8 @@
 FROM node:20-slim
 
+# Install OpenSSL for Prisma 7
+RUN apt-get update -y && apt-get install -y openssl
+
 WORKDIR /app
 
 COPY package*.json ./
