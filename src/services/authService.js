@@ -12,7 +12,7 @@ const register = async (userData) => {
   }
 
   const existingUsername = await userRepository.findByUsername(username);
-  if (existingUsername) {
+  if (existingUsername) { 
     throw new Error('Username already exists');
   }
 
